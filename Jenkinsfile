@@ -1,11 +1,11 @@
 pipeline {
     agent any  // Rulează pe orice agent disponibil
-    
+
     stages {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh 'make build'  // Exemplu de comandă shell
+                sh 'make build'
             }
         }
         
