@@ -1,25 +1,14 @@
 pipeline {
     agent any
-
+    environment {
+        GIT_CREDENTIALS_ID = 'github-token'  // ID-ul credențialei salvate
+    }
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building project...'
-                sh 'make build'  // Rulează comanda de build
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                sh 'make test'  // Rulează testele
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-                sh 'make deploy'  // Deploy automat
+                withCredentials([usernamePassword(credentialsId: GIT_CREDENTIALS_ID, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                    sh 'git clone https://$GIT_USER:$GIT_PASS@github.com/user/repository.git'
+                }
             }
         }
     }
