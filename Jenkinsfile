@@ -1,25 +1,25 @@
 pipeline {
-    agent any  // Rulează pe orice agent disponibil
+    agent any
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building the project...'
-                sh 'make build'
+                echo 'Building project...'
+                sh 'make build'  // Rulează comanda de build
             }
         }
-        
+
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'make test'
+                sh 'make test'  // Rulează testele
             }
         }
-        
+
         stage('Deploy') {
             steps {
-                echo 'Deploying the application...'
-                sh 'make deploy'
+                echo 'Deploying application...'
+                sh 'make deploy'  // Deploy automat
             }
         }
     }
